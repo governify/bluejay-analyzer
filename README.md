@@ -1,4 +1,4 @@
-# BLUEJAY ANALYZER
+# bluejay-analyzer
 ## Quick start
 Clone this repository
 ```
