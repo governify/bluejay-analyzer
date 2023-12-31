@@ -8,6 +8,10 @@ Install the dependencies (from the root directory)
 ```
 npm install
 ```
+## Pre-requirements
+If you are going to launch performance tests **locally**, you must have the bluejay infrastructure up and running with a project with an agreement created.
+
+If you are going to launch the tests in **production**, make sure that the server is accessible. You must have a project created with an active agreement.
 
 ## Usage
 First of all, you must visualize the file directory table and read de Usage and objetive of the tests that you are going to lunch.
