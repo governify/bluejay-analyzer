@@ -1,29 +1,41 @@
 const { run } = require("apipecker");
 
-// TPA DE 10
-    // dev: tpa-class01-GH-cs169_fa23-chips-10.5-53
-    // prod:  tpa-Bluejay-2023-showcase-GH-gii-is-psg2_bluejay-psg2-23-24-bar-tpa
 
-//TPA DE 5
-    // dev: 
-    // prod: tpa-CS169-2023-GH-cs169_fa23-chips-10.5-59
+globalConfig = 
+{
+    execId: 5, // 0 = 1 hour, 1 = 2 hours, 2 = 4 hours, 3 = 8 hours, 4 = 16 hours, 5 = 24 hours
+    production: true // true if you want to run the test in production, false if you want to run it in development
+}
 
-// Test how times increase with respect to the number of hours
+projectConfig =
+{
+    projectId: "tpa-CS169-2023-GH-cs169_fa23-chips-10.5-59", // id of the project you want to test
+    year: "2019", // computing year
+    month: "05", // computing month
+}
 
-function myUrlBuilder(test, project, year, month, day, prod){
+// Test how times increase with respect to the number of hours ----------------------------------------------------------------
+
+function myUrlBuilder(execId, project, year, month, day, prod){
     var hour = "";
-    if(test == 0){
+    if(execId == 0){
         hour = "00"
-    } else if(test == 1){
+        console.log("Requesting test for 1 hour...")
+    } else if(execId == 1){
         hour = "01"
-    } else if(test == 2){
+        console.log("Requesting test for 2 hours...")
+    } else if(execId == 2){
         hour = "03"
-    } else if(test == 3){
+        console.log("Requesting test for 4 hours...")
+    } else if(execId == 3){
         hour = "07"
-    } else if(test == 4){
+        console.log("Requesting test for 8 hours...")
+    } else if(execId == 4){
         hour = "15"
-    } else if(test == 5){
+        console.log("Requesting test for 16 hours...")
+    } else if(execId == 5){
         hour = "23"
+        console.log("Requesting test for 24 hours...")
     }
 
     var url = "";
@@ -40,35 +52,54 @@ function myUrlBuilder(test, project, year, month, day, prod){
 }
 
 
-function runAnalyzer(test, project, year, month, prod){
+function runAnalyzer(execId, project, year, month, prod) {
     run({
-        concurrentUsers : 1,
-        iterations : 5,
-        delay : 5000,
-        verbose : true,
-        url: myUrlBuilder(test, project, year, month, "0" + (test+1).toString(), prod),
-        consoleLogging : true
+        concurrentUsers: 1,
+        iterations: 1,
+        delay: 500,
+        verbose: true,
+        url: myUrlBuilder(execId, project, year, month, "0" + (execId + 1).toString(), prod),
+        consoleLogging: true,
     });
+}
 
+function runAllAnalyzers(execId, production) {
+    if(!production){ //DEVELOP
+        console.log("Requesting test in develop...")
+        if(execId == 0){ // 1 hour
+            runAnalyzer(0, projectConfig.projectId, projectConfig.year, projectConfig.month, production);
+        } else if(execId == 1){ // 2 hours
+            runAnalyzer(1, projectConfig.projectId, projectConfig.year, projectConfig.month, production);
+        } else if(execId == 2){ // 4 hours
+            runAnalyzer(2, projectConfig.projectId, projectConfig.year, projectConfig.month, production);
+        } else if(execId == 3){ // 8 hours
+            runAnalyzer(3, projectConfig.projectId, projectConfig.year, projectConfig.month, production);
+        } else if(execId == 4){ // 16 hours
+            runAnalyzer(4, projectConfig.projectId, projectConfig.year, projectConfig.month, production);
+        } else if(execId == 5){ // 24 hours
+            runAnalyzer(5, projectConfig.projectId, projectConfig.year, projectConfig.month, production);
+        }else{
+            console.log("invalid execId")
+        }
+    } else if(production){ //PRODUCTION
+        console.log("Requesting test in production...")
+        if(execId == 0){ // 1 hour
+            runAnalyzer(0, projectConfig.projectId, projectConfig.year, projectConfig.month, production);
+        } else if(execId == 1){ // 2 hours
+            runAnalyzer(1, projectConfig.projectId, projectConfig.year, projectConfig.month, production);
+        } else if(execId == 2){ // 4 hours
+            runAnalyzer(2, projectConfig.projectId, projectConfig.year, projectConfig.month, production);
+        } else if(execId == 3){ // 8 hours
+            runAnalyzer(3, projectConfig.projectId, projectConfig.year, projectConfig.month, production);
+        } else if(execId == 4){ // 16 hours
+            runAnalyzer(4, projectConfig.projectId, projectConfig.year, projectConfig.month, production);
+        } else if(execId == 5){ // 24 hours
+            runAnalyzer(5, projectConfig.projectId, projectConfig.year, projectConfig.month, production);
+        } else{
+            console.log("invalid execId")
+        }
+    }
 
 }
 
-//DEV
-//runAnalyzer(0, "tpa-class01-GH-cs169_fa23-chips-10.5-53", "2023", "01", false)
-//runAnalyzer(1, "tpa-class01-GH-cs169_fa23-chips-10.5-53", "2023", "01", false)
-//runAnalyzer(2, "tpa-class01-GH-cs169_fa23-chips-10.5-53", "2023", "01", false)
-//runAnalyzer(3, "tpa-class01-GH-cs169_fa23-chips-10.5-53", "2023", "01", false)
-//runAnalyzer(4, "tpa-class01-GH-cs169_fa23-chips-10.5-53", "2023", "01", false)
-//runAnalyzer(5, "tpa-class01-GH-cs169_fa23-chips-10.5-53", "2023", "01", false)
-
-//PROD
-//runAnalyzer(0, "tpa-Bluejay-2023-showcase-GH-gii-is-psg2_bluejay-psg2-23-24-bar-tpa", "2020", "05", true)
-//runAnalyzer(1, "tpa-Bluejay-2023-showcase-GH-gii-is-psg2_bluejay-psg2-23-24-bar-tpa", "2020", "05", true)
-//runAnalyzer(2, "tpa-Bluejay-2023-showcase-GH-gii-is-psg2_bluejay-psg2-23-24-bar-tpa", "2020", "05", true)
-//runAnalyzer(3, "tpa-Bluejay-2023-showcase-GH-gii-is-psg2_bluejay-psg2-23-24-bar-tpa", "2020", "08", true)
-//runAnalyzer(4, "tpa-Bluejay-2023-showcase-GH-gii-is-psg2_bluejay-psg2-23-24-bar-tpa", "2020", "05", true)
-//runAnalyzer(5, "tpa-Bluejay-2023-showcase-GH-gii-is-psg2_bluejay-psg2-23-24-bar-tpa", "2020", "05", true)
-
-
-
- 
+runAllAnalyzers(globalConfig.execId, globalConfig.production);
