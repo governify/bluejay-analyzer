@@ -6,18 +6,19 @@ globalConfig =
     production: true, // true if you want to run the test in production, false if you want to run it in development
     delay: 10000, // waiting time between one iteration and another
     iterations: 1, // number of iterations to be made
-    concurrentUsers: 1 // number of requests to be made in 1 iteration
+    concurrentUsers: 20 // number of requests to be made in 1 iteration
 }
 
 projectConfig =
 {
     projectId: "tpa-CS169-2023-GH-cs169_fa23-chips-10.5-59", // id of the project you want to test
-    year: 2022, // start computing year
+    year: 2020, // start computing year
     month: 1, // start computing month
     day: 1 // start computing day
 }
 
 // Tests the system's ability to perform calculations one after another ----------------------------------------------------------------
+
 var globalHour;
 var globalDay;
 var globalMonth;
@@ -47,7 +48,7 @@ function myUrlBuilder(){
     globalMonth = tranformMonth();
     globalYear = tranformYear();
 
-    if(globalHour != 23){
+    if(globalHour != 23){ // Hour Change
         globalHour++;
     } else if(globalHour == 23 && globalDay != 28){ // Day change
         globalHour = 0;
@@ -125,7 +126,7 @@ function initializeGlobalVariables(){
 
 function runAnalyzer() {
     run({
-        concurrentUsers: 50,
+        concurrentUsers: globalConfig.concurrentUsers,
         iterations: globalConfig.iterations,
         delay: globalConfig.delay,
         verbose: true,

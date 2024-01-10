@@ -3,7 +3,7 @@ const { run } = require("apipecker");
 
 globalConfig = 
 {
-    execId: 5, // 0 = 1 hour, 1 = 2 hours, 2 = 4 hours, 3 = 8 hours, 4 = 16 hours, 5 = 24 hours
+    execId: 0, // 0 = 1 hour, 1 = 2 hours, 2 = 4 hours, 3 = 8 hours, 4 = 16 hours, 5 = 24 hours
     production: true // true if you want to run the test in production, false if you want to run it in development
 }
 
@@ -11,7 +11,7 @@ projectConfig =
 {
     projectId: "tpa-CS169-2023-GH-cs169_fa23-chips-10.5-59", // id of the project you want to test
     year: "2019", // computing year
-    month: "05", // computing month
+    month: "10", // computing month
 }
 
 // Test how times increase with respect to the number of hours ----------------------------------------------------------------
