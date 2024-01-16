@@ -1,8 +1,10 @@
 # bluejay-analyzer
+Bluejay-analyzer provides insights into some performance aspects of the bluejay infrastructure.
+
 ## Quick start
 Clone this repository
 ```
-git clone https://github.com/pafmon/apipecker.git
+git clone https://github.com/governify/bluejay-analyzer.git
 ```
 Install the dependencies (from the root directory)
 ```
@@ -25,7 +27,8 @@ All relevant information will be displayed by console.
 ## File directory table
 | Directory                                | Objective and Usage                                                                                                                                                      |
 |------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| .\registry\computationTimeWithXHours.js  | This file provides information about the computation time in different periods (1 hour, 2 hours, 4 hours, 8 hours, 16 hours, and 24 hours). Test how times increase with respect to the number of hours. Configure the config objects with the required information in this file before launch the test.  |
+| ./registry/computationTimeWithXHours.js  | This file provides information about the computation time in different periods (1 hour, 2 hours, 4 hours, 8 hours, 16 hours, and 24 hours). Test how times increase with respect to the number of hours. Configure the config objects with the required information in this file before launch the test.  |
+| ./registry/automaticComputation.js | This file tests the system's ability to perform calculations one after another. Configure the config objects with the required information in this file before launch the test. |
 
 
 
