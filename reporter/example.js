@@ -1,5 +1,8 @@
 const { run } = require("apipecker");
 
+// This test is not ready to be launched
+
+
 const prod_url = "https://reporter.bluejay.governify.io/api/v4/contracts/tpa-CS169-2023-GH-cs169_fa23-chips-10.5-59/createPointsFromPeriods";
 const dev_url = "http://localhost:5300/api/v4/contracts/tpa-class01-GH-cs169_fa23-chips-10.5-53/createPointsFromPeriods"
 
@@ -7,8 +10,6 @@ function myUrlBuilder(groupId){
     var url = dev_url;
     return url;
 }
-
-//Probar como aumentan los tiempos con respecto al numero de horas
 
 function myRequestBuilder(){
     var data = {
